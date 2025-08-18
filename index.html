@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zayli - Elegant Jewelry Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Zayli Logo" id="brand-logo">
+                <span>Zayli</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#earrings">Earrings</a></li>
+                <li><a href="#necklaces">Necklaces</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="home" class="hero">
+        <div class="hero-inner">
+            <img src="logo.png" alt="Zayli" class="hero-logo" id="hero-logo">
+            <h1>Timeless Elegance by Zayli</h1>
+            <p>Handcrafted earrings and necklaces designed to shine every day.</p>
+            <div class="cta-group">
+                <a href="#earrings" class="btn btn-primary">Shop Earrings</a>
+                <a href="#necklaces" class="btn btn-outline">Shop Necklaces</a>
+                <a href="https://wa.me/7903162712" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp: 7903162712
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Earrings Section -->
+        <section id="earrings" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Earrings</h2>
+                    <p>Delicate designs for every occasion.</p>
+                </div>
+
+                <div class="uploader">
+                    <div class="uploader-actions">
+                        <label class="file-input">
+                            <input id="earrings-input" type="file" accept="image/*" multiple>
+                            <span><i class="fa-regular fa-images"></i> Upload Earrings Photos</span>
+                        </label>
+                        <button id="earrings-clear" class="btn-link" type="button">
+                            <i class="fa-regular fa-trash-can"></i> Clear All
+                        </button>
+                    </div>
+                    <div id="earrings-drop" class="dropzone">
+                        <div class="dz-inner">
+                            <i class="fa-regular fa-circle-up"></i>
+                            <p>Drag and drop images here or click “Upload”</p>
+                            <small>PNG, JPG, JPEG • up to ~10MB each</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="earrings-gallery" class="gallery"></div>
+            </div>
+        </section>
+
+        <!-- Necklaces Section -->
+        <section id="necklaces" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Necklaces</h2>
+                    <p>Statement pieces to elevate your style.</p>
+                </div>
+
+                <div class="uploader">
+                    <div class="uploader-actions">
+                        <label class="file-input">
+                            <input id="necklaces-input" type="file" accept="image/*" multiple>
+                            <span><i class="fa-regular fa-images"></i> Upload Necklaces Photos</span>
+                        </label>
+                        <button id="necklaces-clear" class="btn-link" type="button">
+                            <i class="fa-regular fa-trash-can"></i> Clear All
+                        </button>
+                    </div>
+                    <div id="necklaces-drop" class="dropzone">
+                        <div class="dz-inner">
+                            <i class="fa-regular fa-circle-up"></i>
+                            <p>Drag and drop images here or click “Upload”</p>
+                            <small>PNG, JPG, JPEG • up to ~10MB each</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="necklaces-gallery" class="gallery"></div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="section">
+            <div class="container split">
+                <div>
+                    <h2>About Zayli</h2>
+                    <p>Zayli celebrates refined craftsmanship and subtle luxury. Each piece is thoughtfully designed to complement your everyday and special moments.</p>
+                    <ul class="bullets">
+                        <li>Premium materials</li>
+                        <li>Handcrafted finish</li>
+                        <li>Small-batch drops</li>
+                    </ul>
+                    <a href="https://wa.me/7903162712" class="btn btn-whatsapp" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+                <div class="about-card">
+                    <div class="about-stat">
+                        <span class="num">1000+</span>
+                        <span class="label">Happy Customers</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="num">2019</span>
+                        <span class="label">Founded</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="num">100%</span>
+                        <span class="label">Quality Checked</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section alt">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Contact</h2>
+                    <p>We’re quick on WhatsApp. Share your preferred style, and we’ll guide you.</p>
+                </div>
+                <div class="contact-grid">
+                    <a class="contact-card" href="https://wa.me/7903162712" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <div>
+                            <div class="contact-title">WhatsApp</div>
+                            <div class="contact-sub">7903162712</div>
+                        </div>
+                    </a>
+                    <a class="contact-card" href="tel:+7903162712">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <div class="contact-title">Call</div>
+                            <div class="contact-sub">+7 903 162 712</div>
+                        </div>
+                    </a>
+                    <a class="contact-card" href="mailto:hello@zayli.example">
+                        <i class="fa-regular fa-envelope"></i>
+                        <div>
+                            <div class="contact-title">Email</div>
+                            <div class="contact-sub">hello@zayli.example</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <img src="logo.png" alt="Zayli" class="footer-logo">
+                <span>Zayli</span>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#earrings">Earrings</a></li>
+                <li><a href="#necklaces">Necklaces</a></li>
+                <li><a href="https://wa.me/7903162712" target="_blank" rel="noopener">WhatsApp</a></li>
+            </ul>
+            <div class="footer-copy">© <span id="year"></span> Zayli. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/7903162712" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
