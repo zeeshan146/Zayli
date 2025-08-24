@@ -86,30 +86,78 @@ const qtyInput = document.getElementById('qty-input');
 const qtyMinus = document.getElementById('qty-minus');
 const qtyPlus = document.getElementById('qty-plus');
 
-// Product data (you can customize this for each product)
-const productData = {
-  title: "Elegant Zayli Necklace",
-  price: "₹1,299",
-  originalPrice: "₹1,999",
-  discount: "35% OFF",
-  description: "This stunning necklace features premium craftsmanship with elegant design. Perfect for both casual and formal occasions. Made with high-quality materials that ensure durability and beauty.",
-  features: [
-    "Premium quality materials",
-    "Elegant design suitable for all occasions",
-    "Adjustable length for perfect fit",
-    "Hypoallergenic and skin-friendly",
-    "Comes with elegant packaging"
-  ],
-  specs: {
-    "Material": "Sterling Silver",
-    "Length": "18-20 inches",
-    "Weight": "15 grams",
-    "Clasp": "Lobster Clasp"
+// Product data for different categories
+const productCategories = {
+  necklaces: {
+    title: "Elegant Zayli Necklace Collection",
+    price: "₹1,299",
+    originalPrice: "₹1,999",
+    discount: "35% OFF",
+    description: "Discover our stunning necklace collection featuring premium craftsmanship and timeless elegance. Each piece is meticulously designed to complement your style for both casual and formal occasions. Made with high-quality materials that ensure durability and lasting beauty.",
+    features: [
+      "Premium Sterling Silver construction",
+      "Elegant design suitable for all occasions",
+      "Adjustable length (18-22 inches) for perfect fit",
+      "Hypoallergenic and skin-friendly materials",
+      "Comes with elegant gift packaging",
+      "Handcrafted by skilled artisans"
+    ],
+    specs: {
+      "Material": "Sterling Silver (925)",
+      "Length": "18-22 inches adjustable",
+      "Weight": "15-25 grams",
+      "Clasp": "Premium Lobster Clasp",
+      "Finish": "Polished & Rhodium plated"
+    }
+  },
+  earrings: {
+    title: "Sophisticated Zayli Earring Collection",
+    price: "₹899",
+    originalPrice: "₹1,399",
+    discount: "36% OFF",
+    description: "Elevate your style with our sophisticated earring collection. Each piece showcases intricate detailing and premium materials, designed to add elegance to any outfit. Perfect for daily wear and special occasions alike.",
+    features: [
+      "Premium metal construction",
+      "Intricate design patterns",
+      "Lightweight and comfortable wear",
+      "Hypoallergenic materials",
+      "Secure butterfly backings",
+      "Elegant presentation box"
+    ],
+    specs: {
+      "Material": "Sterling Silver & Gold Plated",
+      "Size": "Medium (15-20mm)",
+      "Weight": "8-12 grams per pair",
+      "Backing": "Butterfly Clasp",
+      "Finish": "Polished & Plated"
+    }
+  },
+  bracelets: {
+    title: "Charming Zayli Bracelet Collection",
+    price: "₹699",
+    originalPrice: "₹1,099",
+    discount: "36% OFF",
+    description: "Adorn your wrists with our charming bracelet collection. Each piece features delicate craftsmanship and elegant designs that complement your personal style. Perfect for layering or wearing alone for a sophisticated look.",
+    features: [
+      "Delicate chain construction",
+      "Adjustable sizing for perfect fit",
+      "Elegant charm designs",
+      "Lightweight and comfortable",
+      "Hypoallergenic materials",
+      "Gift-ready packaging"
+    ],
+    specs: {
+      "Material": "Sterling Silver",
+      "Length": "7-8 inches adjustable",
+      "Weight": "10-15 grams",
+      "Clasp": "Toggle or Lobster Clasp",
+      "Finish": "Polished & Rhodium plated"
+    }
   }
 };
 
 // Open product modal
-function openProductModal(imageSrc, imageAlt, galleryImages, imageIndex) {
+function openProductModal(imageSrc, imageAlt, galleryImages, imageIndex, category = 'necklaces') {
   currentProductImages = galleryImages;
   currentProductIndex = imageIndex;
   
@@ -117,8 +165,14 @@ function openProductModal(imageSrc, imageAlt, galleryImages, imageIndex) {
   mainProductImage.src = imageSrc;
   mainProductImage.alt = imageAlt;
   
+  // Get product data based on category
+  const productData = productCategories[category] || productCategories.necklaces;
+  
   // Update product title
   productTitle.textContent = productData.title;
+  
+  // Update product details in the modal
+  updateProductDetails(productData);
   
   // Create thumbnails
   createThumbnails(galleryImages, imageIndex);
@@ -126,6 +180,48 @@ function openProductModal(imageSrc, imageAlt, galleryImages, imageIndex) {
   // Show modal
   productModal.classList.add('show');
   document.body.style.overflow = 'hidden';
+}
+
+// Update product details in the modal
+function updateProductDetails(productData) {
+  // Update price information
+  const priceElement = document.querySelector('.price');
+  const originalPriceElement = document.querySelector('.original-price');
+  const discountElement = document.querySelector('.discount');
+  
+  if (priceElement) priceElement.textContent = productData.price;
+  if (originalPriceElement) originalPriceElement.textContent = productData.originalPrice;
+  if (discountElement) discountElement.textContent = productData.discount;
+  
+  // Update description
+  const descriptionElement = document.querySelector('.product-description p');
+  if (descriptionElement) descriptionElement.textContent = productData.description;
+  
+  // Update features
+  const featuresList = document.querySelector('.product-features ul');
+  if (featuresList) {
+    featuresList.innerHTML = '';
+    productData.features.forEach(feature => {
+      const li = document.createElement('li');
+      li.textContent = feature;
+      featuresList.appendChild(li);
+    });
+  }
+  
+  // Update specifications
+  const specsGrid = document.querySelector('.spec-grid');
+  if (specsGrid) {
+    specsGrid.innerHTML = '';
+    Object.entries(productData.specs).forEach(([key, value]) => {
+      const specItem = document.createElement('div');
+      specItem.className = 'spec-item';
+      specItem.innerHTML = `
+        <span class="spec-label">${key}:</span>
+        <span class="spec-value">${value}</span>
+      `;
+      specsGrid.appendChild(specItem);
+    });
+  }
 }
 
 // Create thumbnail gallery
@@ -230,10 +326,18 @@ document.querySelectorAll('.gallery').forEach(gallery => {
   const cards = gallery.querySelectorAll('.card');
   const images = gallery.querySelectorAll('img');
   
+  // Determine category based on gallery ID
+  let category = 'necklaces'; // default
+  if (gallery.id === 'earrings-gallery') {
+    category = 'earrings';
+  } else if (gallery.id === 'bracelets-gallery') {
+    category = 'bracelets';
+  }
+  
   cards.forEach((card, index) => {
     card.addEventListener('click', () => {
       const image = images[index];
-      openProductModal(image.src, image.alt, images, index);
+      openProductModal(image.src, image.alt, images, index, category);
     });
   });
 });
