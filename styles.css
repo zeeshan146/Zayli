@@ -98,41 +98,97 @@ body{
   position:relative;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden
 }
 .card img{width:100%;height:220px;object-fit:cover;display:block}
+
+/* About placeholder */
+.about-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 14px;
+  padding: 40px;
+  text-align: center;
+  min-height: 200px;
+}
+
+.about-placeholder i {
+  font-size: 48px;
+  color: var(--brand);
+  margin-bottom: 16px;
+}
+
+.about-placeholder p {
+  color: var(--muted);
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Navbar scroll effect */
+.navbar.scrolled {
+  background: rgba(10,10,11,.95);
+  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+}
+
+/* Animation classes */
+.animate-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Image loading states */
+.card img.loaded {
+  opacity: 1;
+}
+
+.card img.error {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+/* Card click effect */
+.card.clicked {
+  transform: scale(0.98);
+  transition: transform 0.2s ease;
+}
+
 .card .card-actions{
   position:absolute;top:8px;right:8px;display:flex;gap:6px
 }
-.icon-btn{
-  width:34px;height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.16);
-  background:rgba(0,0,0,.35);backdrop-filter:blur(6px);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer
+.card .card-actions button{
+  width:28px;height:28px;border-radius:8px;border:0;background:rgba(0,0,0,.6);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px
 }
-.icon-btn:hover{border-color:rgba(255,255,255,.32)}
-.badge{
-  position:absolute;left:8px;top:8px;background:linear-gradient(180deg,var(--brand),var(--brand-2));
-  color:#111;padding:6px 10px;font-size:12px;border-radius:999px;font-weight:600
+.card .card-actions button:hover{background:rgba(0,0,0,.8)}
+.card .badge{
+  position:absolute;top:8px;left:8px;background:var(--brand);color:#111;padding:4px 8px;border-radius:6px;font-size:11px;font-weight:500
 }
 
 /* About */
-.split{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:start}
-.about-card{
-  background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:10px
-}
-.about-stat{background:rgba(255,255,255,.03);border-radius:12px;padding:12px;text-align:center;border:1px solid rgba(255,255,255,.06)}
-.about-stat .num{font-family:'Playfair Display',serif;font-size:22px}
-.about-stat .label{color:var(--muted);font-size:12px}
-.bullets{margin:12px 0 18px;padding-left:18px}
-.bullets li{margin:6px 0}
+.about-content{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.about-text h3{font-family:'Playfair Display',serif;font-size:24px;margin:0 0 12px}
+.about-text p{color:var(--muted);margin:0 0 12px}
+.about-image{width:200px;height:200px;border-radius:14px;overflow:hidden}
+.about-img{width:100%;height:100%;object-fit:cover}
 
 /* Contact */
-.contact-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:14px
-}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .contact-card{
-  display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;background:var(--card);
-  border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:14px
+  display:flex;align-items:center;gap:12px;padding:20px;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;text-decoration:none;color:var(--text);transition:all 0.2s
 }
+.contact-card:hover{border-color:var(--ring);transform:translateY(-2px)}
 .contact-card i{font-size:20px;color:var(--brand)}
-.contact-title{font-weight:600}
+.contact-title{font-weight:500;margin-bottom:2px}
 .contact-sub{color:var(--muted);font-size:14px}
 
 /* Footer */
@@ -171,166 +227,3 @@ body{
   .gallery{grid-template-columns:1fr}
   .hero h1{font-size:34px}
 }
-```
-
-```javascript:script.js
-const $ = s => document.querySelector(s);
-const $$ = s => Array.from(document.querySelectorAll(s));
-
-// Mobile nav
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-if (hamburger) {
-  hamburger.addEventListener('click', () => navMenu.classList.toggle('show'));
-}
-
-// Year
-const yearEl = $('#year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-// Helpers
-const MAX_SIZE = 10 * 1024 * 1024;
-const toDataURL = file =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = e => resolve(e.target.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-
-function toast(msg) {
-  console.log(msg);
-}
-
-async function handleFiles(files, key, galleryEl) {
-  const valid = [];
-  for (const f of files) {
-    if (!f.type.startsWith('image/')) continue;
-    if (f.size > MAX_SIZE) { toast(`Skipped ${f.name}: too large`); continue; }
-    valid.push(f);
-  }
-  if (!valid.length) return;
-
-  const existing = JSON.parse(localStorage.getItem(key) || '[]');
-  for (const file of valid) {
-    const url = await toDataURL(file);
-    existing.push({ url, name: file.name, ts: Date.now() });
-  }
-  localStorage.setItem(key, JSON.stringify(existing));
-  renderGallery(key, galleryEl);
-}
-
-function renderGallery(key, galleryEl) {
-  const items = JSON.parse(localStorage.getItem(key) || '[]');
-  galleryEl.innerHTML = '';
-  for (const item of items) {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <span class="badge">${key === 'earrings' ? 'Earrings' : 'Necklaces'}</span>
-      <div class="card-actions">
-        <button class="icon-btn" data-action="download" title="Download"><i class="fa-regular fa-circle-down"></i></button>
-        <button class="icon-btn" data-action="remove" title="Remove"><i class="fa-regular fa-trash-can"></i></button>
-      </div>
-      <img loading="lazy" alt="${item.name || ''}">
-    `;
-    const img = card.querySelector('img');
-    img.src = item.url;
-    galleryEl.appendChild(card);
-
-    card.addEventListener('click', e => {
-      const b = e.target.closest('button');
-      if (!b) return;
-      const action = b.dataset.action;
-      if (action === 'remove') {
-        const arr = JSON.parse(localStorage.getItem(key) || '[]');
-        const idx = arr.findIndex(x => x.url === item.url);
-        if (idx > -1) {
-          arr.splice(idx, 1);
-          localStorage.setItem(key, JSON.stringify(arr));
-          renderGallery(key, galleryEl);
-        }
-      } else if (action === 'download') {
-        const a = document.createElement('a');
-        a.href = item.url;
-        a.download = item.name || 'zayli-photo';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      }
-    });
-  }
-}
-
-// Wire up Earrings
-const earringsInput = $('#earrings-input');
-const earringsDrop = $('#earrings-drop');
-const earringsGallery = $('#earrings-gallery');
-const earringsClear = $('#earrings-clear');
-
-if (earringsInput && earringsDrop && earringsGallery) {
-  renderGallery('earrings', earringsGallery);
-
-  earringsInput.addEventListener('change', e => {
-    handleFiles(e.target.files, 'earrings', earringsGallery);
-    earringsInput.value = '';
-  });
-
-  ;['dragenter','dragover'].forEach(evt =>
-    earringsDrop.addEventListener(evt, e => { e.preventDefault(); earringsDrop.classList.add('drag'); })
-  );
-  ;['dragleave','drop'].forEach(evt =>
-    earringsDrop.addEventListener(evt, e => { e.preventDefault(); earringsDrop.classList.remove('drag'); })
-  );
-  earringsDrop.addEventListener('drop', e => {
-    const files = e.dataTransfer.files;
-    handleFiles(files, 'earrings', earringsGallery);
-  });
-
-  earringsClear.addEventListener('click', () => {
-    localStorage.removeItem('earrings');
-    renderGallery('earrings', earringsGallery);
-  });
-}
-
-// Wire up Necklaces
-const necklacesInput = $('#necklaces-input');
-const necklacesDrop = $('#necklaces-drop');
-const necklacesGallery = $('#necklaces-gallery');
-const necklacesClear = $('#necklaces-clear');
-
-if (necklacesInput && necklacesDrop && necklacesGallery) {
-  renderGallery('necklaces', necklacesGallery);
-
-  necklacesInput.addEventListener('change', e => {
-    handleFiles(e.target.files, 'necklaces', necklacesGallery);
-    necklacesInput.value = '';
-  });
-
-  ;['dragenter','dragover'].forEach(evt =>
-    necklacesDrop.addEventListener(evt, e => { e.preventDefault(); necklacesDrop.classList.add('drag'); })
-  );
-  ;['dragleave','drop'].forEach(evt =>
-    necklacesDrop.addEventListener(evt, e => { e.preventDefault(); necklacesDrop.classList.remove('drag'); })
-  );
-  necklacesDrop.addEventListener('drop', e => {
-    const files = e.dataTransfer.files;
-    handleFiles(files, 'necklaces', necklacesGallery);
-  });
-
-  necklacesClear.addEventListener('click', () => {
-    localStorage.removeItem('necklaces');
-    renderGallery('necklaces', necklacesGallery);
-  });
-}
-
-// Logo sync: if there's only one logo, mirror it to hero/footer when it loads/fails gracefully
-const brandLogo = $('#brand-logo');
-const heroLogo = $('#hero-logo');
-if (brandLogo && heroLogo) {
-  heroLogo.src = brandLogo.src;
-}
-```
-
-```
-
