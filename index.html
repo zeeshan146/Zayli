@@ -201,6 +201,128 @@
         </div>
     </footer>
 
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="product-modal">
+        <div class="product-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="product-container">
+                <div class="product-gallery">
+                    <div class="main-image-container">
+                        <img id="main-product-image" src="" alt="">
+                    </div>
+                    <div class="thumbnail-gallery" id="thumbnail-gallery">
+                        <!-- Thumbnails will be added here -->
+                    </div>
+                </div>
+                <div class="product-details">
+                    <div class="product-header">
+                        <h2 id="product-title">Elegant Necklace</h2>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="rating-text">5.0 (24 reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="product-price">
+                        <span class="price">₹1,299</span>
+                        <span class="original-price">₹1,999</span>
+                        <span class="discount">35% OFF</span>
+                    </div>
+                    
+                    <div class="product-description">
+                        <h3>Product Description</h3>
+                        <p>This stunning necklace features premium craftsmanship with elegant design. Perfect for both casual and formal occasions. Made with high-quality materials that ensure durability and beauty.</p>
+                        
+                        <div class="product-features">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>Premium quality materials</li>
+                                <li>Elegant design suitable for all occasions</li>
+                                <li>Adjustable length for perfect fit</li>
+                                <li>Hypoallergenic and skin-friendly</li>
+                                <li>Comes with elegant packaging</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="product-specs">
+                            <h4>Specifications:</h4>
+                            <div class="spec-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Material:</span>
+                                    <span class="spec-value">Sterling Silver</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Length:</span>
+                                    <span class="spec-value">18-20 inches</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Weight:</span>
+                                    <span class="spec-value">15 grams</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Clasp:</span>
+                                    <span class="spec-value">Lobster Clasp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <label>Quantity:</label>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" id="qty-minus">-</button>
+                                <input type="number" id="qty-input" value="1" min="1" max="10">
+                                <button class="qty-btn" id="qty-plus">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <a href="https://wa.me/917903162712?text=Hi! I'm interested in this necklace. Can you provide more details?" class="btn btn-primary whatsapp-btn" target="_blank">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                Order on WhatsApp
+                            </a>
+                            <button class="btn btn-outline call-btn" onclick="window.location.href='tel:+917903162712'">
+                                <i class="fa-solid fa-phone"></i>
+                                Call Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-info">
+                        <div class="info-item">
+                            <i class="fa-solid fa-truck"></i>
+                            <div>
+                                <strong>Free Delivery</strong>
+                                <span>Across India</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <div>
+                                <strong>Quality Assured</strong>
+                                <span>100% Authentic</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            <div>
+                                <strong>Easy Returns</strong>
+                                <span>7 Day Return Policy</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
