@@ -18,11 +18,16 @@
             </div>
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
-                <a href="#earrings" class="nav-link">Earrings</a>
-                <a href="#necklaces" class="nav-link">Necklaces</a>
+                <a href="#video-showcase" class="nav-link">Glimpses</a>
                 <a href="#bracelets" class="nav-link">Bracelets</a>
+                <a href="#necklaces" class="nav-link">Necklaces</a>
+                <a href="#earrings" class="nav-link">Earrings</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#contact" class="nav-link">Contact</a>
+                <button class="cart-btn" id="cart-btn">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -39,56 +44,173 @@
             <h1>Timeless Elegance by Zayli</h1>
             <p>Handcrafted earrings, necklaces, and bracelets designed to shine every day.</p>
             <div class="cta-group">
-                <a href="#earrings" class="btn btn-primary">Shop Earrings</a>
-                <a href="#necklaces" class="btn btn-outline">Shop Necklaces</a>
+                <a href="#video-showcase" class="btn btn-primary">Watch Glimpses</a>
                 <a href="#bracelets" class="btn btn-outline">Shop Bracelets</a>
+                <a href="#necklaces" class="btn btn-outline">Shop Necklaces</a>
                 <a href="https://wa.me/917903162712" class="btn btn-whatsapp" target="_blank" rel="noopener">
                     <i class="fa-brands fa-whatsapp"></i> WhatsApp: 7903162712
                 </a>
+                <button onclick="testCart()" class="btn btn-outline" style="margin-left: 10px;">
+                    <i class="fa-solid fa-bug"></i> Test Cart
+                </button>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main>
-        <!-- Earrings Section -->
-        <section id="earrings" class="section">
+        <!-- Video Showcase Section -->
+        <section id="video-showcase" class="section">
             <div class="container">
-                <div class="section-header">
-                    <h2>Earrings Collection</h2>
-                    <p>Elegant earrings that complement your style</p>
+                <div class="section-head">
+                    <h2>Product Glimpses</h2>
+                    <p>Watch our beautiful jewelry in action</p>
                 </div>
-                <div id="earrings-gallery" class="gallery">
-                    <!-- Earring images will be added here -->
+                
+                <!-- Premium Filter System -->
+                <div class="premium-filter-system">
+                    <div class="filter-header">
+                        <h3>Discover Your Perfect Piece</h3>
+                        <p>Filter by price and sort by your preference</p>
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <div class="filter-group">
+                            <label class="filter-label">Price Range</label>
+                            <div class="price-slider-container">
+                                <div class="price-range-display">
+                                    <span class="price-min">₹299</span>
+                                    <span class="price-max">₹2,999</span>
+                                </div>
+                                <div class="price-slider">
+                                    <input type="range" id="price-min" min="299" max="2999" value="299" class="range-input">
+                                    <input type="range" id="price-max" min="299" max="2999" value="2999" class="range-input">
+                                    <div class="slider-track"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Sort By</label>
+                            <div class="sort-options">
+                                <button class="sort-btn active" data-sort="featured">
+                                    <i class="fa-solid fa-star"></i>
+                                    Featured
+                                </button>
+                                <button class="sort-btn" data-sort="price-low">
+                                    <i class="fa-solid fa-arrow-down"></i>
+                                    Price: Low to High
+                                </button>
+                                <button class="sort-btn" data-sort="price-high">
+                                    <i class="fa-solid fa-arrow-up"></i>
+                                    Price: High to Low
+                                </button>
+                                <button class="sort-btn" data-sort="newest">
+                                    <i class="fa-solid fa-clock"></i>
+                                    Newest First
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Quick Filters</label>
+                            <div class="quick-filters">
+                                <button class="quick-filter-btn active" data-category="all">
+                                    <i class="fa-solid fa-gem"></i>
+                                    All Pieces
+                                </button>
+                                <button class="quick-filter-btn" data-category="bracelets">
+                                    <i class="fa-solid fa-circle"></i>
+                                    Bracelets
+                                </button>
+                                <button class="quick-filter-btn" data-category="necklaces">
+                                    <i class="fa-solid fa-circle"></i>
+                                    Necklaces
+                                </button>
+                                <button class="quick-filter-btn" data-category="earrings">
+                                    <i class="fa-solid fa-circle"></i>
+                                    Earrings
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-results">
+                        <div class="results-info">
+                            <span class="results-count">Showing <strong>34</strong> products</span>
+                            <button class="clear-filters-btn">
+                                <i class="fa-solid fa-rotate-left"></i>
+                                Clear Filters
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Necklaces Section -->
-        <section id="necklaces" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Necklaces Collection</h2>
-                    <p>Stunning necklaces for every occasion</p>
-                </div>
-                <div id="necklaces-gallery" class="gallery">
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L1.jpeg" alt="Necklace 1" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L2.jpeg" alt="Necklace 2" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L3.jpeg" alt="Necklace 3" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L4.jpeg" alt="Necklace 4" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L5.jpeg" alt="Necklace 5" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L6.jpeg" alt="Necklace 6" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L7.jpeg" alt="Necklace 7" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L8.jpeg" alt="Necklace 8" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L9.jpeg" alt="Necklace 9" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L10.jpeg" alt="Necklace 10" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L11.jpeg" alt="Necklace 11" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L12.jpeg" alt="Necklace 12" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L13.jpeg" alt="Necklace 13" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L14.jpeg" alt="Necklace 14" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L15.jpeg" alt="Necklace 15" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L16.jpeg" alt="Necklace 16" loading="lazy"></div>
-                    <div class="card"><span class="badge">Necklaces</span><img src="assets/necklaces/L17.jpeg" alt="Necklace 17" loading="lazy"></div>
+                
+                <div class="video-gallery">
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/videos/b1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <span class="video-badge">Bracelet Collection</span>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/videos/b2.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <span class="video-badge">Elegant Design</span>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/videos/b3.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <span class="video-badge">Premium Quality</span>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/videos/b4.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <span class="video-badge">Handcrafted</span>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/videos/b5.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <span class="video-badge">Timeless Beauty</span>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/videos/b6.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <span class="video-badge">Artisan Crafted</span>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/videos/b7.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <span class="video-badge">Exquisite Detail</span>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/videos/b8.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <span class="video-badge">Zayli Elegance</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -96,16 +218,320 @@
         <!-- Bracelets Section -->
         <section id="bracelets" class="section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-head">
                     <h2>Bracelets Collection</h2>
                     <p>Beautiful bracelets to adorn your wrists</p>
                 </div>
                 <div id="bracelets-gallery" class="gallery">
-                    <div class="card"><span class="badge">Bracelets</span><img src="assets/bracelets/bracelet1.jpeg" alt="Bracelet 1" loading="lazy"></div>
-                    <div class="card"><span class="badge">Bracelets</span><img src="assets/bracelets/bracelet2.jpeg" alt="Bracelet 2" loading="lazy"></div>
-                    <div class="card"><span class="badge">Bracelets</span><img src="assets/bracelets/bracelet3.jpeg" alt="Bracelet 3" loading="lazy"></div>
-                    <div class="card"><span class="badge">Bracelets</span><img src="assets/bracelets/bracelet4.jpeg" alt="Bracelet 4" loading="lazy"></div>
-                    <div class="card"><span class="badge">Bracelets</span><img src="assets/bracelets/bracelet5.jpeg" alt="Bracelet 5" loading="lazy"></div>
+                    <div class="card" data-product-id="B1">
+                        <span class="badge">Bracelets</span>
+                        <img src="assets/bracelets/bracelet1.jpeg" alt="Elegant Gold Bracelet" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Elegant Gold Bracelet</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹699</span>
+                                    <span class="original-price">₹1099</span>
+                                    <span class="discount-badge">36% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('B1', 'Elegant Gold Bracelet', 699, 1099, 'assets/bracelets/bracelet1.jpeg', 'bracelets')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/bracelets/bracelet1.jpeg', 'Elegant Gold Bracelet', [], 0, 'bracelets')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="B2">
+                        <span class="badge">Bracelets</span>
+                        <img src="assets/bracelets/bracelet2.jpeg" alt="Silver Charm Bracelet" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Silver Charm Bracelet</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹499</span>
+                                    <span class="original-price">₹799</span>
+                                    <span class="discount-badge">38% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('B2', 'Silver Charm Bracelet', 499, 799, 'assets/bracelets/bracelet2.jpeg', 'bracelets')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/bracelets/bracelet2.jpeg', 'Silver Charm Bracelet', [], 0, 'bracelets')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="B3">
+                        <span class="badge">Bracelets</span>
+                        <img src="assets/bracelets/bracelet3.jpeg" alt="Diamond Cut Bracelet" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Diamond Cut Bracelet</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹899</span>
+                                    <span class="original-price">₹1399</span>
+                                    <span class="discount-badge">36% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('B3', 'Diamond Cut Bracelet', 899, 1399, 'assets/bracelets/bracelet3.jpeg', 'bracelets')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/bracelets/bracelet3.jpeg', 'Diamond Cut Bracelet', [], 0, 'bracelets')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="B4">
+                        <span class="badge">Bracelets</span>
+                        <img src="assets/bracelets/bracelet4.jpeg" alt="Rose Gold Chain" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Rose Gold Chain</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹599</span>
+                                    <span class="original-price">₹999</span>
+                                    <span class="discount-badge">40% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('B4', 'Rose Gold Chain', 599, 999, 'assets/bracelets/bracelet4.jpeg', 'bracelets')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/bracelets/bracelet4.jpeg', 'Rose Gold Chain', [], 0, 'bracelets')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="B5">
+                        <span class="badge">Bracelets</span>
+                        <img src="assets/bracelets/bracelet5.jpeg" alt="Premium Silver Bracelet" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Premium Silver Bracelet</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹799</span>
+                                    <span class="original-price">₹1299</span>
+                                    <span class="discount-badge">38% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('B5', 'Premium Silver Bracelet', 799, 1299, 'assets/bracelets/bracelet5.jpeg', 'bracelets')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/bracelets/bracelet5.jpeg', 'Premium Silver Bracelet', [], 0, 'bracelets')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Necklaces Section -->
+        <section id="necklaces" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Necklaces Collection</h2>
+                    <p>Stunning necklaces for every occasion</p>
+                </div>
+                <div id="necklaces-gallery" class="gallery">
+                    <div class="card" data-product-id="L1">
+                        <span class="badge">Necklaces</span>
+                        <img src="assets/necklaces/L1.jpeg" alt="Gold Luxury Chain" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Gold Luxury Chain</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹1299</span>
+                                    <span class="original-price">₹1899</span>
+                                    <span class="discount-badge">32% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('L1', 'Gold Luxury Chain', 1299, 1899, 'assets/necklaces/L1.jpeg', 'necklaces')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/necklaces/L1.jpeg', 'Gold Luxury Chain', [], 0, 'necklaces')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="L2">
+                        <span class="badge">Necklaces</span>
+                        <img src="assets/necklaces/L2.jpeg" alt="Silver Crystal Chain" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Silver Crystal Chain</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹899</span>
+                                    <span class="original-price">₹1499</span>
+                                    <span class="discount-badge">40% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('L2', 'Silver Crystal Chain', 899, 1499, 'assets/necklaces/L2.jpeg', 'necklaces')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/necklaces/L2.jpeg', 'Silver Crystal Chain', [], 0, 'necklaces')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="L3">
+                        <span class="badge">Necklaces</span>
+                        <img src="assets/necklaces/L3.jpeg" alt="Pearl Diamond Chain" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Pearl Diamond Chain</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹1599</span>
+                                    <span class="original-price">₹2199</span>
+                                    <span class="discount-badge">27% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('L3', 'Pearl Diamond Chain', 1599, 2199, 'assets/necklaces/L3.jpeg', 'necklaces')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/necklaces/L3.jpeg', 'Pearl Diamond Chain', [], 0, 'necklaces')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="L4">
+                        <span class="badge">Necklaces</span>
+                        <img src="assets/necklaces/L4.jpeg" alt="Rose Gold Chain" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Rose Gold Chain</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹1099</span>
+                                    <span class="original-price">₹1699</span>
+                                    <span class="discount-badge">35% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('L4', 'Rose Gold Chain', 1099, 1699, 'assets/necklaces/L4.jpeg', 'necklaces')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/necklaces/L4.jpeg', 'Rose Gold Chain', [], 0, 'necklaces')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="L5">
+                        <span class="badge">Necklaces</span>
+                        <img src="assets/necklaces/L5.jpeg" alt="Crystal Silver Chain" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Crystal Silver Chain</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹799</span>
+                                    <span class="original-price">₹1299</span>
+                                    <span class="discount-badge">38% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('L5', 'Crystal Silver Chain', 799, 1299, 'assets/necklaces/L5.jpeg', 'necklaces')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/necklaces/L5.jpeg', 'Crystal Silver Chain', [], 0, 'necklaces')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Earrings Section -->
+        <section id="earrings" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Earrings Collection</h2>
+                    <p>Elegant earrings that complement your style</p>
+                </div>
+                <div id="earrings-gallery" class="gallery">
+                    <div class="card" data-product-id="E1">
+                        <span class="badge">Earrings</span>
+                        <img src="assets/earrings/earrings-1.jpeg" alt="Pearl Drop Earrings" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Pearl Drop Earrings</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹399</span>
+                                    <span class="original-price">₹699</span>
+                                    <span class="discount-badge">43% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('E1', 'Pearl Drop Earrings', 399, 699, 'assets/earrings/earrings-1.jpeg', 'earrings')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/earrings/earrings-1.jpeg', 'Pearl Drop Earrings', [], 0, 'earrings')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-product-id="E2">
+                        <span class="badge">Earrings</span>
+                        <img src="assets/earrings/earrings2.jpeg" alt="Gold Stud Earrings" loading="lazy">
+                        <div class="card-content">
+                            <div class="product-info">
+                                <h3 class="product-name">Gold Stud Earrings</h3>
+                                <div class="product-price">
+                                    <span class="current-price">₹299</span>
+                                    <span class="original-price">₹499</span>
+                                    <span class="discount-badge">40% OFF</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="add-to-cart-btn" onclick="addToCart('E2', 'Gold Stud Earrings', 299, 499, 'assets/earrings/earrings2.jpeg', 'earrings')">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    Add to Cart
+                                </button>
+                                <button class="quick-view-btn" onclick="openProductModal('assets/earrings/earrings2.jpeg', 'Gold Stud Earrings', [], 0, 'earrings')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -113,7 +539,7 @@
         <!-- About Section -->
         <section id="about" class="section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-head">
                     <h2>About Zayli</h2>
                     <p>Our story of craftsmanship and elegance</p>
                 </div>
@@ -136,7 +562,7 @@
         <!-- Contact Section -->
         <section id="contact" class="section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-head">
                     <h2>Get in Touch</h2>
                     <p>We'd love to hear from you</p>
                 </div>
@@ -325,6 +751,26 @@
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo/zayli-logo.jpeg" alt="ZAYLI" class="footer-logo">
+                    <span>Zayli</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#earrings">Earrings</a>
+                    <a href="#necklaces">Necklaces</a>
+                    <a href="#bracelets">Bracelets</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; <span class="footer-year">2025</span> Zayli. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/917903162712?text=Hi! I'm interested in Zayli jewelry. Can you help me?" class="wa-float" target="_blank" rel="noopener">
